@@ -1,0 +1,24 @@
+# Netlify configuration for the PAO Studies site.
+# No build step needed — this is static HTML.
+
+[build]
+  publish = "."
+
+# Clean URLs: /the-sower/ works without trailing index.html
+[[redirects]]
+  from = "/the-sower"
+  to = "/the-sower/"
+  status = 301
+
+# Cache rules
+[[headers]]
+  for = "/*.pdf"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"
+
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
