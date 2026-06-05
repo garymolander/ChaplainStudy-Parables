@@ -4,7 +4,7 @@ backend:
 
 site_url: https://pao-parables.netlify.app
 display_url: https://pao-parables.netlify.app
-logo_url: https://pao-parables.netlify.app/
+logo_url: /admin/pao-logo.png
 
 media_folder: "static/uploads"
 public_folder: "/uploads"
