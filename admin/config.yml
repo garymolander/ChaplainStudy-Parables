@@ -1,0 +1,109 @@
+backend:
+  name: git-gateway
+  branch: main
+
+site_url: https://pao-parables.netlify.app
+display_url: https://pao-parables.netlify.app
+logo_url: https://pao-parables.netlify.app/
+
+media_folder: "static/uploads"
+public_folder: "/uploads"
+
+collections:
+  - name: "chapters"
+    label: "Chapters"
+    label_singular: "Chapter"
+    folder: "src/chapters"
+    extension: "md"
+    format: "yaml-frontmatter"
+    slug: "{{slug}}"
+    create: false
+    delete: false
+    identifier_field: "title"
+    summary: "Chapter {{fields.chapter_number}} — {{fields.title}}"
+    fields:
+      - { label: "Layout", name: "layout", widget: "hidden", default: "chapter.njk" }
+      - { label: "Chapter Title", name: "title", widget: "string" }
+      - { label: "Chapter Number", name: "chapter_number", widget: "number", value_type: "int", min: 1 }
+      - { label: "Chapter Number (word)", name: "chapter_number_word", widget: "string", hint: "e.g., One, Two, Three" }
+      - { label: "Study Number", name: "study_number", widget: "number", value_type: "int", min: 1 }
+      - { label: "URL slug", name: "slug", widget: "hidden" }
+      - { label: "PDF Filename", name: "pdf_filename", widget: "string" }
+      - { label: "Permalink", name: "permalink", widget: "hidden" }
+      - { label: "Scripture Reference (e.g., Luke 8:4–15)", name: "scripture_ref", widget: "string" }
+      - { label: "Scripture Ref for screen readers", name: "scripture_ref_aria", widget: "string", required: false }
+      - { label: "Scripture Ref for lightbox heading", name: "scripture_ref_lightbox", widget: "string", required: false }
+      - { label: "Scripture Title", name: "scripture_title", widget: "string" }
+      - { label: "Scripture Title for lightbox (if different)", name: "scripture_title_lightbox", widget: "string", required: false }
+      - { label: "Theme Tag (e.g., Grace & Sonship)", name: "theme_tag", widget: "string" }
+      - label: "Main Message Paragraphs"
+        name: "main_message_paragraphs"
+        widget: "list"
+        field: { label: "Paragraph", name: "paragraph", widget: "text" }
+      - { label: "Main Message Pull Quote", name: "main_message_pull_quote", widget: "text" }
+      - label: "Discovery Questions"
+        name: "discovery_questions"
+        widget: "list"
+        field: { label: "Question", name: "question", widget: "string" }
+      - label: "Discovering Truth — Intro Paragraphs"
+        name: "dt_intro_paragraphs"
+        widget: "list"
+        field: { label: "Paragraph", name: "paragraph", widget: "text" }
+      - label: "Cards Layout"
+        name: "cards_layout"
+        widget: "select"
+        options: ["2-col", "3-col", "2x2-grid"]
+      - label: "Discovering Truth — Cards"
+        name: "cards"
+        widget: "list"
+        fields:
+          - { label: "Eyebrow", name: "eyebrow", widget: "string" }
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Variant", name: "variant", widget: "string", required: false }
+          - { label: "Body", name: "body", widget: "text" }
+      - label: "Discovering Truth — Closing Paragraphs"
+        name: "dt_closing_paragraphs"
+        widget: "list"
+        required: false
+        field: { label: "Paragraph", name: "paragraph", widget: "text" }
+      - label: "Key Points"
+        name: "key_points"
+        widget: "list"
+        field: { label: "Point", name: "point", widget: "string" }
+      - label: "Group Discussion Questions"
+        name: "discussion_questions"
+        widget: "list"
+        field: { label: "Question", name: "question", widget: "string" }
+      - label: "Personal Reflection Paragraphs"
+        name: "personal_reflection_paragraphs"
+        widget: "list"
+        field: { label: "Paragraph", name: "paragraph", widget: "text" }
+      - { label: "Personal Reflection Pull Quote", name: "personal_reflection_pull_quote", widget: "text" }
+      - label: "Personal Reflection Questions"
+        name: "reflection_questions"
+        widget: "list"
+        field: { label: "Question", name: "question", widget: "string" }
+      - label: "Scripture Verses (ESV)"
+        name: "scripture_verses"
+        widget: "list"
+        fields:
+          - { label: "Verse Number", name: "num", widget: "number", value_type: "int", min: 1 }
+          - { label: "Verse Text", name: "text", widget: "text" }
+      - { label: "ESV Attribution Footer", name: "scripture_esv_attribution", widget: "text" }
+
+  - name: "site"
+    label: "Site Settings"
+    files:
+      - name: "site_config"
+        label: "Site Settings"
+        file: "src/_data/site.json"
+        fields:
+          - { label: "Site Title (browser tab + SEO)", name: "site_title", widget: "string" }
+          - { label: "Site Description (SEO meta)", name: "site_description", widget: "text" }
+          - { label: "Hero Eyebrow", name: "hero_eyebrow", widget: "string" }
+          - { label: "Hero Title", name: "hero_title", widget: "string" }
+          - { label: "Hero Intro Paragraph", name: "hero_intro", widget: "text" }
+          - { label: "Section Eyebrow (above chapter grid)", name: "section_eyebrow", widget: "string" }
+          - { label: "Section Title (above chapter grid)", name: "section_title", widget: "string" }
+          - { label: "Footer Org Name", name: "footer_org", widget: "string" }
+          - { label: "Footer Note", name: "footer_note", widget: "string" }

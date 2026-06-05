@@ -2,32 +2,44 @@
 
 The Pro Athletes Outreach player study site — a multi-week scripture series for NFL players.
 
+## Architecture
+
+- **Eleventy** static site generator builds the site from markdown data files.
+- **Decap CMS** (formerly Netlify CMS) gives non-technical staff a browser-based editor at `/admin/`.
+- **Netlify Identity + Git Gateway** handles authentication and lets editors commit changes via the CMS without needing a GitHub account.
+
 ## What's here
 
 ```
 .
-├── index.html              # Landing page — list of all studies
-├── the-sower/              # Chapter 1
-│   ├── index.html          # Player study page
-│   └── pao-parables-ch1-the-sower.pdf
-├── netlify.toml            # Netlify config (static, no build)
-├── README.md
+├── src/                          # Source content + templates
+│   ├── chapters/                 # One markdown file per chapter (editable via CMS)
+│   ├── _includes/                # Shared Nunjucks layouts (chapter.njk, pao-logo.njk)
+│   ├── _data/site.json           # Site-level config (hero copy, footer, etc.)
+│   ├── pdfs/                     # Printable PDF companions, one per chapter
+│   └── index.njk                 # Landing page template
+├── admin/                        # Decap CMS admin portal at /admin/
+│   ├── index.html
+│   └── config.yml                # Editable field schema for chapters + site config
+├── netlify.toml                  # Build config + URL redirects + cache headers
+├── package.json                  # Eleventy declared as dev dependency
+├── .eleventy.js                  # Eleventy config
+├── .nvmrc                        # Node 18
 └── .gitignore
 ```
 
-Each chapter gets its own folder. The URL is `/<chapter-slug>/` — e.g. `/the-sower/`.
+## Editing copy (for PAO staff)
 
-## Adding a new chapter
+1. Go to `https://pao-parables.netlify.app/admin/`
+2. Log in with the email/password provisioned by Netlify Identity
+3. Click a chapter to open the editor
+4. Edit the fields, click Publish
+5. The site updates automatically in about 30 seconds
 
-1. Create a new folder, e.g. `the-mustard-seed/`.
-2. Drop the chapter's `index.html` and PDF inside it.
-3. Open the root `index.html` and update the corresponding "Coming Soon" card to point at the new folder. Replace the title and meta fields with the real ones.
-4. Commit, push to GitHub. Netlify auto-deploys.
+## Local development (for Gary)
 
-## Editing copy
-
-For now, copy is edited directly in the HTML. Once Decap CMS is wired up, PAO staff can edit through a browser-based admin panel without touching the code.
-
-## Local preview
-
-Open `index.html` in a browser, or run `python3 -m http.server` from this folder and visit `http://localhost:8000`.
+```bash
+npm install
+npm run dev      # local preview at http://localhost:8080
+npm run build    # build to _site/
+```

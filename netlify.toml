@@ -1,13 +1,64 @@
 # Netlify configuration for the PAO Studies site.
-# No build step needed — this is static HTML.
+# Eleventy build — content edited via Decap CMS, output published from _site/.
 
 [build]
-  publish = "."
+  command = "npm run build"
+  publish = "_site"
 
 # Clean URLs: /the-sower/ works without trailing index.html
 [[redirects]]
   from = "/the-sower"
   to = "/the-sower/"
+  status = 301
+
+[[redirects]]
+  from = "/the-lost-sheep-and-lost-coin"
+  to = "/the-lost-sheep-and-lost-coin/"
+  status = 301
+
+[[redirects]]
+  from = "/the-lost-son"
+  to = "/the-lost-son/"
+  status = 301
+
+[[redirects]]
+  from = "/the-pharisee-and-tax-collector"
+  to = "/the-pharisee-and-tax-collector/"
+  status = 301
+
+[[redirects]]
+  from = "/the-great-banquet"
+  to = "/the-great-banquet/"
+  status = 301
+
+[[redirects]]
+  from = "/the-persistent-widow"
+  to = "/the-persistent-widow/"
+  status = 301
+
+[[redirects]]
+  from = "/the-mustard-seed"
+  to = "/the-mustard-seed/"
+  status = 301
+
+[[redirects]]
+  from = "/the-ten-bridesmaids"
+  to = "/the-ten-bridesmaids/"
+  status = 301
+
+[[redirects]]
+  from = "/the-good-samaritan"
+  to = "/the-good-samaritan/"
+  status = 301
+
+[[redirects]]
+  from = "/the-workers-in-the-vineyard"
+  to = "/the-workers-in-the-vineyard/"
+  status = 301
+
+[[redirects]]
+  from = "/the-wise-and-foolish-builders"
+  to = "/the-wise-and-foolish-builders/"
   status = 301
 
 # Cache rules

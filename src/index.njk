@@ -1,0 +1,385 @@
+---
+permalink: /index.html
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ site.site_title }}</title>
+  <meta name="description" content="{{ site.site_description }}" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:              #1B1D20;
+      --surface:         #25282D;
+      --surface-2:       #2E3138;
+      --surface-line:    rgba(255,255,255,0.06);
+      --text:            #E8E5DE;
+      --text-soft:       rgba(232,229,222,0.72);
+      --text-muted:      rgba(232,229,222,0.5);
+      --text-dim:        rgba(232,229,222,0.35);
+      --accent:          #D97557;
+      --accent-bright:   #E89072;
+      --accent-soft:     rgba(217,117,87,0.14);
+      --accent-dim:      rgba(217,117,87,0.6);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Barlow', sans-serif;
+      font-weight: 400;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; }
+
+    /* ── NAV ──────────────────────────────────────────────── */
+    nav {
+      position: relative;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 28px 60px 0;
+      background: transparent;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+    }
+
+    .nav-logo img { height: 42px; width: auto; }
+
+    .nav-tag {
+      font-family: 'Poppins', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+    }
+
+    /* ── HERO ─────────────────────────────────────────────── */
+    .hero {
+      position: relative;
+      min-height: 70vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background: var(--bg);
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background:
+        radial-gradient(ellipse 60% 55% at 72% 22%, rgba(255,240,220,0.08) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 45% at 20% 78%, rgba(232,229,222,0.04) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 60px 60px 80px;
+      width: 100%;
+    }
+
+    .hero-eyebrow {
+      font-family: 'Poppins', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 22px;
+    }
+
+    .hero-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(54px, 8vw, 112px);
+      font-weight: 800;
+      color: var(--text);
+      letter-spacing: -0.02em;
+      line-height: 1.02;
+      margin: 0;
+    }
+
+    .hero-subtitle {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(18px, 1.8vw, 24px);
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      color: var(--text-muted);
+      margin-top: 18px;
+    }
+
+    .hero-rule {
+      width: 80px;
+      height: 3px;
+      background: var(--accent);
+      margin-top: 36px;
+      margin-bottom: 28px;
+      border-radius: 2px;
+    }
+
+    .hero-intro {
+      max-width: 720px;
+      font-family: 'Barlow', sans-serif;
+      font-size: clamp(15px, 1.2vw, 18px);
+      line-height: 1.7;
+      color: var(--text-soft);
+    }
+
+    /* ── STUDIES GRID ─────────────────────────────────────── */
+    .studies-section {
+      background: var(--bg);
+      padding: 80px 60px 120px;
+    }
+
+    .studies-wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-eyebrow {
+      font-family: 'Poppins', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 18px;
+    }
+
+    .section-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(28px, 3vw, 40px);
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.01em;
+      margin-bottom: 50px;
+    }
+
+    .studies-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 22px;
+    }
+
+    .study-card {
+      background: var(--surface);
+      border: 1px solid var(--surface-line);
+      border-radius: 12px;
+      padding: 32px 30px;
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      position: relative;
+      overflow: hidden;
+      min-height: 200px;
+    }
+
+    .study-card.active {
+      background: linear-gradient(135deg, var(--surface) 0%, rgba(217,117,87,0.14) 100%);
+      border-color: rgba(217,117,87,0.4);
+    }
+
+    .study-card.active:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent);
+    }
+
+    .study-card.upcoming {
+      cursor: default;
+      opacity: 0.62;
+    }
+
+    .study-card.upcoming:hover {
+      transform: none;
+    }
+
+    .study-card-num {
+      font-family: 'Poppins', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      color: var(--accent);
+      text-transform: uppercase;
+    }
+
+    .study-card.upcoming .study-card-num {
+      color: var(--text-dim);
+    }
+
+    .study-card-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.01em;
+      line-height: 1.15;
+      margin: 0;
+    }
+
+    .study-card.upcoming .study-card-title {
+      color: var(--text-muted);
+    }
+
+    .study-card-meta {
+      font-family: 'Barlow', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-soft);
+      letter-spacing: 0.02em;
+    }
+
+    .study-card-cta {
+      margin-top: auto;
+      font-family: 'Poppins', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .study-card.upcoming .study-card-cta {
+      color: var(--text-dim);
+    }
+
+    .study-card-cta svg {
+      width: 14px;
+      height: 14px;
+      transition: transform 0.18s ease;
+    }
+
+    .study-card.active:hover .study-card-cta svg {
+      transform: translateX(4px);
+    }
+
+    /* ── FOOTER ───────────────────────────────────────────── */
+    footer {
+      background: var(--bg);
+      border-top: 1px solid var(--surface-line);
+      padding: 40px 60px;
+      text-align: center;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .footer-org {
+      font-family: 'Poppins', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--text-soft);
+      text-transform: uppercase;
+    }
+
+    .footer-note {
+      font-family: 'Barlow', sans-serif;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    /* ── RESPONSIVE ───────────────────────────────────────── */
+    @media (max-width: 900px) {
+      nav { padding: 20px 24px 0; }
+      .nav-tag { display: none; }
+      .hero-content { padding: 40px 24px 60px; }
+      .studies-section { padding: 60px 24px 100px; }
+      .studies-grid { grid-template-columns: 1fr; }
+      footer { padding: 30px 24px; }
+      .footer-content { flex-direction: column; gap: 12px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="./" class="nav-logo">
+      {% include "pao-logo.njk" %}
+    </a>
+    <span class="nav-tag">Player Study Series</span>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-eyebrow">{{ site.hero_eyebrow }}</div>
+      <h1 class="hero-title">{{ site.hero_title }}</h1>
+      <div class="hero-rule"></div>
+      <p class="hero-intro">
+        {{ site.hero_intro | safe }}
+      </p>
+    </div>
+  </section>
+
+  <!-- STUDIES GRID -->
+  <section class="studies-section">
+    <div class="studies-wrap">
+      <div class="section-eyebrow">{{ site.section_eyebrow }}</div>
+      <h2 class="section-title">{{ site.section_title }}</h2>
+
+      <div class="studies-grid">
+{% for chapter in collections.chapters %}
+        <a href="/{{ chapter.data.slug }}/" class="study-card active">
+          <div class="study-card-num">Chapter {{ chapter.data.chapter_number_word }}</div>
+          <h3 class="study-card-title">{{ chapter.data.title | safe }}</h3>
+          <div class="study-card-meta">{{ chapter.data.scripture_ref | safe }} &middot; {{ chapter.data.theme_tag | safe }}</div>
+          <div class="study-card-cta">
+            Open Study
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"/>
+              <polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </div>
+        </a>
+{% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-org">{{ site.footer_org }}</div>
+      <div class="footer-note">{{ site.footer_note | safe }}</div>
+    </div>
+  </footer>
+
+</body>
+</html>

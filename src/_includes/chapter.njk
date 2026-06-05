@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ title }} — Study #{{ study_number }} | The Parables of Jesus</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:              #1B1D20;
+      --surface:         #25282D;
+      --surface-2:       #2E3138;
+      --surface-line:    rgba(255,255,255,0.06);
+      --text:            #E8E5DE;
+      --text-soft:       rgba(232,229,222,0.72);
+      --text-muted:      rgba(232,229,222,0.5);
+      --text-dim:        rgba(232,229,222,0.35);
+      --accent:          #D97557;
+      --accent-bright:   #E89072;
+      --accent-soft:     rgba(217,117,87,0.14);
+      --accent-dim:      rgba(217,117,87,0.6);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Barlow', sans-serif;
+      font-weight: 400;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ──────────────────────────────────────────────── */
+    nav {
+      position: relative;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 28px 60px 0;
+      background: transparent;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+    }
+
+    .nav-logo svg, .nav-logo img { height: 42px; width: auto; }
+
+    .logo-text { display: flex; flex-direction: column; line-height: 1; }
+
+    .logo-text .org-name {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 800;
+      font-size: 16px;
+      color: var(--text);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .logo-text .org-sub {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 500;
+      font-size: 10px;
+      color: var(--text-muted);
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+
+    .nav-series-link {
+      text-decoration: none;
+      transition: opacity 0.15s ease;
+    }
+
+    .nav-series-link:hover { opacity: 0.7; }
+
+    .nav-series {
+      font-family: 'Poppins', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+    }
+
+    /* ── HERO ─────────────────────────────────────────────── */
+    .hero {
+      position: relative;
+      min-height: 55vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background: var(--bg);
+    }
+
+    /* Soft ambient light — one or two whisper-soft highlights */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background:
+        radial-gradient(ellipse 60% 55% at 72% 22%, rgba(255,240,220,0.08) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 45% at 20% 78%, rgba(232,229,222,0.04) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 50px 60px 40px;
+    }
+
+    .hero-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(56px, 8vw, 120px);
+      font-weight: 800;
+      color: var(--text);
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+      margin: 0;
+    }
+
+    .hero-subtitle {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(17px, 1.7vw, 22px);
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+      margin-top: 14px;
+      margin-bottom: 0;
+    }
+
+    .hero-subtitle .study-mark {
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .hero-subtitle .study-divider {
+      display: inline-block;
+      margin: 0 8px;
+      color: var(--text-dim);
+      font-weight: 400;
+    }
+
+    /* ── PDF DOWNLOAD (inside hero, below subtitle) ─────────── */
+    .pdf-download-wrap {
+      margin-top: 30px;
+      display: flex;
+      align-items: center;
+    }
+
+    .pdf-download {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: transparent;
+      border: 1.5px solid var(--accent);
+      padding: 12px 22px;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: all 0.18s ease;
+      white-space: nowrap;
+    }
+
+    .pdf-download:hover {
+      background: var(--accent);
+      color: var(--bg);
+      transform: translateY(-1px);
+    }
+
+    .pdf-download svg {
+      width: 14px;
+      height: 14px;
+      flex-shrink: 0;
+    }
+
+    /* ── SHARED SECTION ───────────────────────────────────── */
+    .section {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 80px 40px;
+    }
+
+    .eyebrow {
+      font-family: 'Poppins', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+      color: var(--text-dim);
+    }
+
+    /* ── SCRIPTURE CALLOUT (dark teaching box, clickable) ── */
+    .scripture-callout {
+      background: var(--surface);
+      border: 1px solid var(--surface-line);
+      border-radius: 8px;
+      padding: 32px 36px;
+      max-width: 760px;
+      margin: 0 auto;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.35);
+      cursor: pointer;
+      position: relative;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .scripture-callout:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.45);
+    }
+
+    .scripture-callout .callout-label {
+      font-family: 'Poppins', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .scripture-callout .callout-text {
+      font-family: 'Poppins', sans-serif;
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.01em;
+    }
+
+    .scripture-callout .callout-sub {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-top: 8px;
+    }
+
+    .scripture-callout .callout-hint {
+      position: absolute;
+      bottom: 12px;
+      right: 18px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+    }
+
+    /* ── STUDY SECTIONS ───────────────────────────────────── */
+    .study-section {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 60px 40px;
+      border-top: 1px solid var(--surface-line);
+    }
+
+    .study-heading {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(28px, 3.5vw, 40px);
+      font-weight: 800;
+      color: var(--text);
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 26px;
+    }
+
+    .study-body {
+      font-size: 17px;
+      font-weight: 300;
+      color: var(--text-soft);
+      line-height: 1.85;
+    }
+
+    .study-body + .study-body { margin-top: 18px; }
+
+    .study-pull {
+      font-family: 'Poppins', sans-serif;
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--text-soft);
+      font-style: italic;
+      border-left: 3px solid var(--accent);
+      padding-left: 20px;
+      margin: 28px 0;
+      line-height: 1.55;
+    }
+
+    .study-list {
+      list-style: none;
+      margin: 24px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .study-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 16px;
+      color: var(--text-soft);
+    }
+
+    .study-list li::before {
+      content: '';
+      display: block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--text-muted);
+      margin-top: 9px;
+      flex-shrink: 0;
+    }
+
+    /* ── QUESTION BOX (dark lifted grey with salmon stripe) ── */
+    .question-box {
+      max-width: 760px;
+      margin: 28px auto 0;
+      background: var(--surface);
+      border: 1px solid var(--surface-line);
+      border-top: 4px solid var(--accent);
+      border-radius: 8px;
+      padding: 36px 40px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.35);
+    }
+
+    .question-box .question-eyebrow {
+      font-family: 'Poppins', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+
+    .question-box .question-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 22px;
+      letter-spacing: -0.01em;
+      line-height: 1.15;
+    }
+
+    .question-box ol {
+      list-style: none;
+      counter-reset: qb;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .question-box ol li {
+      counter-increment: qb;
+      position: relative;
+      padding-left: 38px;
+      font-size: 16px;
+      color: var(--text-soft);
+      line-height: 1.65;
+    }
+
+    .question-box ol li::before {
+      content: counter(qb, decimal-leading-zero);
+      position: absolute;
+      left: 0;
+      top: 1px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+    }
+
+    /* ── CTA ──────────────────────────────────────────────── */
+    .cta-section {
+      padding: 90px 40px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .cta-header {
+      text-align: center;
+      margin-bottom: 52px;
+    }
+
+    .cta-eyebrow {
+      font-family: 'Poppins', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+
+    .cta-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(28px, 3vw, 42px);
+      font-weight: 800;
+      color: var(--text);
+      letter-spacing: -0.02em;
+    }
+
+    .cta-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .cta-card {
+      position: relative;
+      border-radius: 8px;
+      overflow: hidden;
+      padding: 44px 40px;
+      text-decoration: none;
+      display: block;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .cta-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.5);
+    }
+
+    .cta-card.learn {
+      background: linear-gradient(135deg, #25282D 0%, #2E3138 100%);
+      border: 1px solid var(--surface-line);
+    }
+
+    .cta-card.register {
+      background: linear-gradient(135deg, #25282D 0%, rgba(217,117,87,0.18) 100%);
+      border: 1px solid rgba(217,117,87,0.3);
+    }
+
+    .cta-card-label {
+      font-family: 'Poppins', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .learn   .cta-card-label { color: var(--text-muted); }
+    .register .cta-card-label { color: var(--accent); }
+
+    .cta-card-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--text);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+
+    .cta-card-desc {
+      font-size: 14px;
+      color: var(--text-soft);
+      margin-bottom: 28px;
+      line-height: 1.6;
+    }
+
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 13px 24px;
+      border-radius: 4px;
+      border: 1.5px solid;
+      transition: all 0.2s;
+      color: var(--text);
+    }
+
+    .cta-btn::after { content: '→'; font-size: 14px; }
+
+    .learn .cta-btn {
+      border-color: rgba(232,229,222,0.4);
+      background: rgba(255,255,255,0.04);
+    }
+
+    .learn .cta-btn:hover { background: var(--text); border-color: var(--text); color: var(--bg); }
+
+    .register .cta-btn {
+      border-color: var(--accent);
+      background: rgba(217,117,87,0.12);
+    }
+
+    .register .cta-btn:hover { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+
+    /* ── FOOTER ───────────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--surface-line);
+      padding: 30px 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-logo { display: flex; align-items: center; gap: 10px; }
+    .footer-logo svg, .footer-logo img { height: 28px; width: auto; opacity: 0.6; }
+
+    .footer-logo-text {
+      font-family: 'Poppins', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+    }
+
+    .footer-copy { font-size: 12px; color: var(--text-dim); }
+
+    /* ── DISCOVERY QUESTIONS (dark question box) ─────────── */
+    .discovery-callout {
+      max-width: 760px;
+      margin: 28px auto 0;
+      background: var(--surface);
+      border: 1px solid var(--surface-line);
+      border-top: 4px solid var(--accent);
+      border-radius: 8px;
+      padding: 36px 40px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.35);
+    }
+
+    .discovery-callout .discovery-label {
+      font-family: 'Poppins', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+
+    .discovery-callout .discovery-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 22px;
+      letter-spacing: -0.01em;
+      line-height: 1.15;
+    }
+
+    .discovery-callout ol {
+      list-style: none;
+      counter-reset: disc;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .discovery-callout ol li {
+      counter-increment: disc;
+      position: relative;
+      padding-left: 38px;
+      font-size: 16px;
+      color: var(--text-soft);
+      line-height: 1.65;
+    }
+
+    .discovery-callout ol li::before {
+      content: counter(disc, decimal-leading-zero);
+      position: absolute;
+      left: 0;
+      top: 1px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+    }
+
+    /* ── FOUR SOILS GRID ──────────────────────────────────── */
+    .soils-section {
+      max-width: 1100px;
+      margin: 36px auto 0;
+      padding: 0 40px;
+    }
+
+    .soils-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .soil-card {
+      background: linear-gradient(135deg, #25282D 0%, rgba(217,117,87,0.18) 100%);
+      border: 1px solid rgba(217,117,87,0.3);
+      border-radius: 8px;
+      padding: 32px 36px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.35);
+    }
+
+    .soil-eyebrow {
+      font-family: 'Poppins', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .soil-eyebrow::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--surface-line);
+    }
+
+    .soil-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--text);
+      letter-spacing: -0.01em;
+      line-height: 1.15;
+      margin-bottom: 14px;
+    }
+
+    .soil-body {
+      font-size: 15.5px;
+      font-weight: 400;
+      color: var(--text-soft);
+      line-height: 1.72;
+    }
+
+    /* ── LIGHTBOX ─────────────────────────────────────────── */
+    .lightbox-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15,17,20,0.85);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 1000;
+      display: none;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 60px 24px;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+      overflow-y: auto;
+    }
+
+    .lightbox-overlay.is-open {
+      display: flex;
+      opacity: 1;
+    }
+
+    .lightbox-modal {
+      position: relative;
+      background: var(--surface-2);
+      max-width: 720px;
+      width: 100%;
+      border-radius: 8px;
+      padding: 48px 56px 40px;
+      max-height: 85vh;
+      overflow-y: auto;
+      margin: auto;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 18px;
+      right: 22px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 28px;
+      line-height: 1;
+      color: var(--text);
+      opacity: 0.5;
+      padding: 4px 10px;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 400;
+      transition: opacity 0.15s ease;
+    }
+
+    .lightbox-close:hover { opacity: 1; }
+
+    .lightbox-eyebrow {
+      font-family: 'Poppins', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    .lightbox-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: 30px;
+      font-weight: 800;
+      color: var(--text);
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 28px;
+    }
+
+    .lightbox-body {
+      font-family: 'Barlow', sans-serif;
+      font-size: 17px;
+      font-weight: 400;
+      line-height: 1.85;
+      color: var(--text-soft);
+    }
+
+    .lightbox-body p {
+      margin-bottom: 12px;
+    }
+
+    .lightbox-body .verse-num {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 11px;
+      color: var(--text-dim);
+      margin-right: 6px;
+      vertical-align: baseline;
+      position: relative;
+      top: -2px;
+    }
+
+    .lightbox-footer {
+      margin-top: 32px;
+      padding-top: 20px;
+      border-top: 1px solid var(--surface-line);
+      font-family: 'Barlow', sans-serif;
+      font-size: 11px;
+      line-height: 1.55;
+      color: var(--text-dim);
+    }
+
+    /* ── RESPONSIVE ───────────────────────────────────────── */
+    @media (max-width: 900px) {
+      nav { padding: 20px 24px 0; }
+      .nav-series { display: none; }
+      .hero-content { padding: 30px 24px 48px; }
+      .pdf-download-wrap { margin-top: 24px; }
+      .pdf-download { font-size: 10px; padding: 11px 18px; letter-spacing: 0.16em; }
+      .hero-subtitle { font-size: 16px; letter-spacing: 0.05em; }
+      .section, .study-section { padding-left: 24px; padding-right: 24px; }
+      .scripture-callout { margin: 0 24px; padding: 28px 26px; }
+      .discovery-callout { margin-left: 24px; margin-right: 24px; padding: 28px 26px; }
+      .question-box { margin-left: 24px; margin-right: 24px; padding: 28px 26px; }
+      .soils-section { padding: 0 24px; }
+      .soils-grid { grid-template-columns: 1fr; gap: 16px; }
+      .soil-card { padding: 28px 24px 26px; }
+      .soil-title { font-size: 22px; }
+      .cta-section { padding: 64px 24px; }
+      .cta-cards { grid-template-columns: 1fr; }
+      footer { padding: 24px; flex-direction: column; gap: 10px; text-align: center; }
+      .lightbox-overlay { padding: 24px 16px; }
+      .lightbox-modal { padding: 36px 26px 30px; }
+      .lightbox-title { font-size: 26px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="../" class="nav-logo">
+      {% include "pao-logo.njk" %}
+    </a>
+    <a href="../" class="nav-series-link"><span class="nav-series">&larr; The Parables of Jesus</span></a>
+  </nav>
+
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1 class="hero-title">{{ title | safe }}</h1>
+      <p class="hero-subtitle"><span class="study-mark">Study #{{ study_number }}</span><span class="study-divider">—</span>The Parables of Jesus</p>
+
+      <div class="pdf-download-wrap">
+        <a href="{{ pdf_filename }}" target="_blank" rel="noopener" class="pdf-download" aria-label="Open printable PDF of this study in a new tab">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          Download Printable PDF
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- SCRIPTURE PROMPT -->
+  <div style="padding: 0 40px; margin-top: 40px;">
+    <div class="scripture-callout" id="scripture-open" role="button" tabindex="0" aria-label="Open scripture passage {{ scripture_ref_aria }}">
+      <p class="callout-label">Scripture</p>
+      <p class="callout-text">{{ scripture_ref | safe }}</p>
+      <p class="callout-sub">{{ scripture_title | safe }}</p>
+      <p class="callout-hint">Tap to read passage →</p>
+    </div>
+  </div>
+
+
+  <!-- STUDY SECTION 1 — MAIN MESSAGE -->
+  <div class="study-section">
+    <h2 class="study-heading">Main Message</h2>
+{%- for para in main_message_paragraphs %}
+    <p class="study-body">{{ para | safe }}</p>
+{%- endfor %}
+    <div class="study-pull">{{ main_message_pull_quote | safe }}</div>
+  </div>
+
+  <!-- DISCOVERY QUESTIONS — question box -->
+  <div class="discovery-callout">
+    <p class="discovery-label">Discovery</p>
+    <p class="discovery-title">Discovery Questions</p>
+    <ol>
+{%- for q in discovery_questions %}
+      <li>{{ q | safe }}</li>
+{%- endfor %}
+    </ol>
+  </div>
+
+
+  <!-- STUDY SECTION 2 — DISCOVERING TRUTH (intro to four soils) -->
+  <div class="study-section">
+    <h2 class="study-heading">Discovering Truth</h2>
+{%- for para in dt_intro_paragraphs %}
+    <p class="study-body">{{ para | safe }}</p>
+{%- endfor %}
+  </div>
+
+  <!-- FOUR SOILS GRID -->
+  <div class="soils-section">
+    <div class="soils-grid"{% if cards_layout == "3-col" %} style="grid-template-columns: 1fr 1fr 1fr;"{% endif %}>
+{%- for card in cards %}
+
+      <div class="soil-card{% if card.variant %} {{ card.variant }}{% endif %}">
+        <p class="soil-eyebrow">{{ card.eyebrow | safe }}</p>
+        <h3 class="soil-title">{{ card.title | safe }}</h3>
+        <p class="soil-body">{{ card.body | safe }}</p>
+      </div>
+{%- endfor %}
+
+    </div>
+  </div>
+
+{%- if dt_closing_paragraphs and dt_closing_paragraphs.length > 0 %}
+
+  <!-- DISCOVERING TRUTH — CLOSING PROSE -->
+  <div class="study-section">
+{%- for para in dt_closing_paragraphs %}
+    <p class="study-body">{{ para | safe }}</p>
+{%- endfor %}
+  </div>
+{%- endif %}
+
+
+  <!-- STUDY SECTION 3 — KEY POINTS -->
+  <div class="study-section">
+    <h2 class="study-heading">Key Points</h2>
+    <ul class="study-list">
+{%- for kp in key_points %}
+      <li>{{ kp | safe }}</li>
+{%- endfor %}
+    </ul>
+  </div>
+
+  <!-- GROUP DISCUSSION QUESTIONS — question box -->
+  <div class="question-box">
+    <p class="question-eyebrow">Discuss</p>
+    <p class="question-title">Group Discussion Questions</p>
+    <ol>
+{%- for q in discussion_questions %}
+      <li>{{ q | safe }}</li>
+{%- endfor %}
+    </ol>
+  </div>
+
+  <!-- STUDY SECTION 5 — PERSONAL REFLECTION PROSE -->
+  <div class="study-section">
+    <h2 class="study-heading">Personal Reflection</h2>
+{%- for para in personal_reflection_paragraphs %}
+    <p class="study-body">{{ para | safe }}</p>
+{%- endfor %}
+    <div class="study-pull">{{ personal_reflection_pull_quote | safe }}</div>
+  </div>
+
+  <!-- PERSONAL REFLECTION QUESTIONS — question box -->
+  <div class="question-box">
+    <p class="question-eyebrow">Reflect</p>
+    <p class="question-title">Personal Reflection Questions</p>
+    <ol>
+{%- for q in reflection_questions %}
+      <li>{{ q | safe }}</li>
+{%- endfor %}
+    </ol>
+  </div>
+
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="cta-header">
+      <p class="cta-eyebrow">What's Next</p>
+      <h2 class="cta-title">Take the Next Step</h2>
+    </div>
+
+    <div class="cta-cards">
+      <a href="https://pao.org/about" target="_blank" class="cta-card learn">
+        <p class="cta-card-label">About PAO</p>
+        <h3 class="cta-card-title">Learn About Pro Athletes Outreach</h3>
+        <p class="cta-card-desc">PAO exists to serve professional athletes and their families — equipping you to live with purpose on and off the field.</p>
+        <span class="cta-btn">Learn More</span>
+      </a>
+
+      <a href="https://pao.org/nfl" target="_blank" class="cta-card register">
+        <p class="cta-card-label">Increase Conference</p>
+        <h3 class="cta-card-title">Register for the Increase Conference</h3>
+        <p class="cta-card-desc">Built for pro athletes who want to grow in faith, leadership, and life. Reserve your spot.</p>
+        <span class="cta-btn">Register Now</span>
+      </a>
+    </div>
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo"><span class="footer-logo-text">Pro Athletes Outreach</span></div>
+    <p class="footer-copy">© 2026 Pro Athletes Outreach. All rights reserved.</p>
+  </footer>
+
+
+  <!-- SCRIPTURE LIGHTBOX -->
+  <div class="lightbox-overlay" id="scripture-lightbox" role="dialog" aria-modal="true" aria-labelledby="scripture-lightbox-title">
+    <div class="lightbox-modal">
+      <button class="lightbox-close" id="scripture-close" aria-label="Close">&times;</button>
+      <p class="lightbox-eyebrow">Scripture — {{ scripture_ref_lightbox | default(scripture_ref) | safe }} — ESV</p>
+      <h2 class="lightbox-title" id="scripture-lightbox-title">{{ scripture_title_lightbox | default(scripture_title) | safe }}</h2>
+      <div class="lightbox-body">
+{%- for v in scripture_verses %}
+        <p><span class="verse-num">{{ v.num }}</span>{{ v.text | safe }}</p>
+{%- endfor %}
+      </div>
+      <p class="lightbox-footer">{{ scripture_esv_attribution | safe }}</p>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var trigger = document.getElementById('scripture-open');
+      var overlay = document.getElementById('scripture-lightbox');
+      var closeBtn = document.getElementById('scripture-close');
+      if (!trigger || !overlay) return;
+
+      function openLightbox() {
+        overlay.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
+      }
+      function closeLightbox() {
+        overlay.classList.remove('is-open');
+        document.body.style.overflow = '';
+      }
+
+      trigger.addEventListener('click', openLightbox);
+      trigger.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          openLightbox();
+        }
+      });
+      closeBtn.addEventListener('click', closeLightbox);
+      overlay.addEventListener('click', function (e) {
+        if (e.target === overlay) closeLightbox();
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && overlay.classList.contains('is-open')) closeLightbox();
+      });
+    })();
+  </script>
+
+</body>
+</html>

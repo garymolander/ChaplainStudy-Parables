@@ -1,0 +1,14 @@
+{
+  "name": "pao-studies",
+  "version": "1.0.0",
+  "private": true,
+  "description": "PAO player study series — multi-week Bible studies built with Eleventy + Decap CMS",
+  "scripts": {
+    "build": "eleventy",
+    "dev": "eleventy --serve",
+    "clean": "rm -rf _site"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^2.0.1"
+  }
+}
