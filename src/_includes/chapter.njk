@@ -431,6 +431,12 @@
       gap: 20px;
     }
 
+    /* When only one CTA card, center it and cap its width so it doesn't look orphaned */
+    .cta-cards:has(> .cta-card:only-child) {
+      grid-template-columns: minmax(0, 620px);
+      justify-content: center;
+    }
+
     .cta-card {
       position: relative;
       border-radius: 8px;
@@ -949,12 +955,6 @@
         <span class="cta-btn">Learn More</span>
       </a>
 
-      <a href="https://pao.org/nfl" target="_blank" class="cta-card register">
-        <p class="cta-card-label">Increase Conference</p>
-        <h3 class="cta-card-title">Register for the Increase Conference</h3>
-        <p class="cta-card-desc">Built for pro athletes who want to grow in faith, leadership, and life. Reserve your spot.</p>
-        <span class="cta-btn">Register Now</span>
-      </a>
     </div>
   </section>
 
